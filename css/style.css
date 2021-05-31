@@ -11,6 +11,17 @@ header {
     margin-bottom: 20px;
 }
 
+#story-board {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 60vh;
+}
+
+#story-line {
+    font-size: 30px;
+}
+
 #message {
     color: #04019C;
     display: flex;
@@ -123,6 +134,11 @@ header {
     background: #F2EBAC
 }
 
+#sand-story {
+    background: #F2EBAC;
+    height: 50px;
+}
+
 #level-journey {
     display: flex;
     flex-direction: row;
@@ -130,6 +146,7 @@ header {
     justify-content: stretch;
     align-items: center;
     flex-grow: 1fr;
+    order: 1;
 }
   
   .level {
@@ -167,3 +184,5 @@ header {
     padding: 15px;
     margin: 5px
   }
+
+

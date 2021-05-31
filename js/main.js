@@ -27,16 +27,16 @@ const creatures = {
         imgUrl: 'dolphin img',
         animation: 'upAndOver'
     },
-}
+};
 
-const story = {
-    line1: "While you were on vacation, Simon hypnotized everyone in the sea into doing whatever he says.",
-    line2: "But he didn't stop there...",
-    line3: "He hypnotized the sea itself into losing all of its color.",
-    line4: "You just realized your best friend, Crabby McStabby, has gone missing.",
-    line5: "Build a path across the reef to find Crabby!",
-    line6: "The only way to break the spell and get past his army is to beat Simon at his own game, so pay attention!"
-}
+const story = [
+    "While you were on vacation, Simon hypnotized everyone in the sea into doing whatever he says.",
+    "But he didn't stop there...",
+    "He hypnotized the sea itself into losing all of its color.",
+    "You just realized your best friend, Crabby McStabby, has gone missing.",
+    "Build a path across the reef to find Crabby!",
+    "The only way to break the spell and get past his army is to beat Simon at his own game, so pay attention!"
+];
 
 
 //STATE VARIABLES//
@@ -61,8 +61,12 @@ const yellowButton = document.getElementById('yellow');
 const redButton = document.getElementById('red');
 const buttonDiv = document.getElementById('next-and-outcomes');
 const livesEl = document.getElementById('num-lives');
+const reefPath = document.getElementById('level-journey');
+const storyLineEl = document.getElementById('story-line')
 
 //EVENT LISTENERS//
+
+
 
 
 
@@ -79,9 +83,54 @@ function init(){
 //render the start screen//
 ////////////start button//
 
+function renderStart(){
+    const beginMsg = document.createElement('div');
+    beginMsg.innerHTML = "Simon Game. Press Start to Begin";
+}
+
 //render the story screen//
 function renderStory(){
+    blankCanvas();
+    createStoryBoard();
+    colorAllLevels();
+    tellStory();
+}
 
+function createStoryBoard(){
+    const storyBoard = document.createElement('div');
+    storyBoard.setAttribute('id', 'story-board');
+    document.body.appendChild(storyBoard, reefPath);
+    const storyLine = document.createElement('h2');
+    storyLine.setAttribute('id', 'story-line');
+    storyBoard.appendChild(storyLine);
+    const sand = document.createElement('div');
+    sand.setAttribute('id', 'sand-story');
+    document.body.appendChild(sand, reefPath);
+}
+
+function blankCanvas(){
+    document.getElementById('top-header').remove();
+    document.getElementById('message').remove();
+    document.getElementById('game-play').remove();
+}
+
+function colorAllLevels(){
+   let levelDots = document.querySelectorAll('.level');
+   for (dot in levelDots){
+       //dot.classList.('level-complete');
+   }
+   let worldDots = document.querySelectorAll('.world');
+   for (dot in worldDots){
+       //dot.classList.add('world-complete');
+   }
+}
+
+function tellStory(){
+    for (let i=0; i<story.length; i++){
+        setTimeout(i=> {
+           storyLineEl.innerText = `${story[i]}`;
+        }, 4000 * i);
+    }
 }
 
 //render the game//
@@ -101,9 +150,6 @@ function renderLoss(){
 
 //FUNCTIONS
 
-function tellStory(){
-    
-}
 
-const 
+
 
