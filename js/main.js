@@ -5,27 +5,33 @@ const colors = ['blue', 'green', 'yellow', 'red'];
 const creatures = {
     starfish: {
         imgUrl: 'starfish img',
-        animation: 'swirl'
+        animation: 'swirl',
+        message: "don't mess with the starfish",
     },
     shark: {
         imgUrl: 'shark img',
-        animation: 'upDown'
+        animation: 'upDown',
+        message: "sharks can do anything"
     },
     stingray: {
         imgUrl: 'stingray img',
-        animation: 'rightLeft'
+        animation: 'rightLeft',
+        message: "Don't mess up or I'll sting you!"
     },
     pufferfish: {
         imgUrl: 'pufferfish img',
-        animation: 'biggerSmaller'
+        animation: 'biggerSmaller',
+        message: "I'll huff and I'll puff and I'll blow you away"
     },
     turtle: {
         imgUrl: 'turtle img',
-        animation: 'wiggle'
+        animation: 'wiggle',
+        message: "you'll leave shell-shocked!"
     },
     dolphin: {
         imgUrl: 'dolphin img',
-        animation: 'upAndOver'
+        animation: 'upAndOver',
+        message: "see if you can keep up!"
     },
 };
 
@@ -73,7 +79,6 @@ function init(){
     lives = 5;
     world = 1;
     level = 1;
-    levelWithinWorld = level % world + 1;
     renderGame()
 };
 
@@ -81,6 +86,12 @@ function init(){
 
 //render the start screen//
 ////////////start button//
+
+//my shortcut function --- DELETE LATER
+function devSkip(){
+    renderStory();
+    init();
+}
 
 function renderStart(){
     const beginMsg = document.createElement('div');
@@ -299,12 +310,16 @@ function worldUp(){
 
 function levelUp(){
     level += 1
+    let levelWithinWorld = level % world + 1;
     let levelId = `level-${world}-${levelWithinWorld}`;
     document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
-    return levelWithinWorld;
+    console.log(level);
+    console.log(levelWithinWorld);
+    console.log(levelId);
+    worldUp();
 }
 
-function createLevel(){
+function renderLevel(){
     createBadGuy();
     createBadGuyMoves();
 }
@@ -312,12 +327,16 @@ function createLevel(){
 function createBadGuy(){
     let creatureArray = ['starfish', 'shark', 'stingray', 'pufferfish', 'turtle', 'dolphin'];
     randomCreature = creatureArray[Math.floor(Math.random()*6)];
-    return randomCreature;
+    const badGuyEl = document.createElement('div');
+    badGuyEl.innerText = `${randomCreature} image`;
+    const opponentEl = document.getElementById('opponent');
+    opponentEl.appendChild(badGuyEl);
+    const tauntMsgEl = document.getElementById('bad-message');
+    tauntMsgEl.innerText = `${creatures[randomCreature].message}`;
 }
 
-//create an array of moves for the bad guy
-
 function createBadGuyMoves(){
+    let levelWithinWorld = level % world + 1;
     let movesNum = world * levelWithinWorld + 1;
     for (let i=0; i< movesNum; i++){
         badGuyChoice = colors[Math.floor(Math.random()*4)];
@@ -326,5 +345,13 @@ function createBadGuyMoves(){
     return badGuyMoves;
 }
 
+////// GAME PLAY ///
+
+//start game -->
+// -- generate bad guy with moves
+// -- display moves
+// -- player moves
+// -- compare moves
+// -- if right, level up, 
 
 
