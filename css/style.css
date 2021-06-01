@@ -15,11 +15,23 @@ header {
     display: flex;
     flex-direction: column;
     align-content: center;
+    justify-content: center;
+    margin: auto 15vh auto 15vh;
     height: 60vh;
 }
 
 #story-line {
     font-size: 30px;
+    color: #04019C;
+}
+
+#start {
+    width: 150px;
+    height: 50px;
+    background: black;
+    color: white;
+    font-size: 25px;
+    align-self: center;
 }
 
 #message {

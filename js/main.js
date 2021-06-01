@@ -68,13 +68,13 @@ const reefPath = document.getElementById('level-journey');
 
 
 
-
 //init//
 function init(){
     playerMoves = [];
     lives = 5;
     world = 1;
     level = 1;
+    renderGame()
 };
 
 
@@ -88,7 +88,7 @@ function renderStart(){
 }
 
 //render the story screen//
-function renderStory(){
+function renderStart(){
     blankCanvas();
     createStoryBoard();
     colorAllLevels();
@@ -100,13 +100,15 @@ function createStoryBoard(){
     storyBoard.setAttribute('id', 'story-board');
     document.body.appendChild(storyBoard, reefPath);
 
-    const storyLine = document.createElement('h2');
-    storyLine.setAttribute('id', 'story-line');
-    storyBoard.appendChild(storyLine);
+    const storyLineEl = document.createElement('h2');
+    storyLineEl.setAttribute('id', 'story-line');
+    storyBoard.appendChild(storyLineEl);
 
     const sand = document.createElement('div');
     sand.setAttribute('id', 'sand-story');
     document.body.appendChild(sand, reefPath);
+
+
 }
 
 function blankCanvas(){
@@ -126,19 +128,46 @@ function colorAllLevels(){
    }
 }
 
-function tellStory(){
-    for (let i=0; i<story.length; i++){
-        setTimeout(i=> {
-            
-            storyLineEl.innerText = `text is ${story[i]}`;
-        }, 4000 * i, i);
+function unColorAllLevels(){
+    let levelDots = document.querySelectorAll('.level');
+    for (var i=0; i< levelDots.length; i++){
+        levelDots[i].classList.remove('level-complete');
+        levelDots[i].classList.add('level-incomplete');
+    }
+    let worldDots = document.querySelectorAll('.world');
+    for (var i=0; i< worldDots.length; i++){
+        worldDots[i].classList.remove('world-complete');
+        worldDots[i].classList.add('world-incomplete');
     }
 }
 
-//render the game//
+function tellStory(){
+    const storyLine = document.getElementById('story-line');
+    for (let i=0; i<story.length; i++){
+        setTimeout(i=> {
+        storyLine.innerText = `${story[i]}`;
+        }, 3000 * i, i);
+    }
+    setTimeout(function(){
+        document.body.style.backgroundColor = '#F6F6F6';
+        document.getElementById('sand-story').style.backgroundColor = '#DDDDDD';
+        document.getElementById('level-journey').style.backgroundColor = '#BFBFC0';
+        storyLine.style.color = '#000000'
+        unColorAllLevels();
+    }, 6000);
+    setTimeout(function(){
+        const startButtonEl = document.createElement('BUTTON');
+        startButtonEl.id = 'start';
+        startButtonEl.innerText = 'start';
+        const storyBoardEl = document.getElementById('story-board');
+        storyBoardEl.appendChild(startButtonEl);
+        startButtonEl.addEventListener('click', renderGame)
+    }, 18000);
+}
+
 function renderGame(){
-    //document.getElementById('story-board').remove();
-   //document.getElementById('sand-story').remove();
+    document.getElementById('story-board').remove();
+    document.getElementById('sand-story').remove();
     createGameHeader();
     createBadGuyMessage();
     createGamePlay();
