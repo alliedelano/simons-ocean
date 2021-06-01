@@ -5,11 +5,11 @@ const colors = ['blue', 'green', 'yellow', 'red'];
 const creatures = {
     starfish: {
         imgUrl: 'starfish img',
-        animation: 'swirl',
+        animation: 'swirl'
     },
     shark: {
         imgUrl: 'shark img',
-        animation: 'upDown',
+        animation: 'upDown'
     },
     stingray: {
         imgUrl: 'stingray img',
@@ -42,15 +42,13 @@ const story = [
 //STATE VARIABLES//
 
 let playerMoves;
+let badGuyMoves;
 let lives;
 let world;
 let level;
+let levelWithinWorld;
 let outcome;
-let badGuy = {
-    moves: [],
-    creature: null,
-    isBoss: false,
-}
+let badGuyCreature;
 
 
 //CASHE ELEMENTS//
@@ -71,9 +69,11 @@ const reefPath = document.getElementById('level-journey');
 //init//
 function init(){
     playerMoves = [];
+    badGuyMoves = [];
     lives = 5;
     world = 1;
     level = 1;
+    levelWithinWorld = level % world + 1;
     renderGame()
 };
 
@@ -290,8 +290,41 @@ function renderLoss(){
 
 
 function worldUp(){
-    if (level % world){
-        world +=1
-
+    if (level % 4 === 0){
+        world += 1;
+        let worldId = `world-${world}`;
+        document.getElementById(worldId).style.backgroundColor = '#10FDC4';
     }
 }
+
+function levelUp(){
+    level += 1
+    let levelId = `level-${world}-${levelWithinWorld}`;
+    document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
+    return levelWithinWorld;
+}
+
+function createLevel(){
+    createBadGuy();
+    createBadGuyMoves();
+}
+
+function createBadGuy(){
+    let creatureArray = ['starfish', 'shark', 'stingray', 'pufferfish', 'turtle', 'dolphin'];
+    randomCreature = creatureArray[Math.floor(Math.random()*6)];
+    return randomCreature;
+}
+
+//create an array of moves for the bad guy
+
+function createBadGuyMoves(){
+    let movesNum = world * levelWithinWorld + 1;
+    for (let i=0; i< movesNum; i++){
+        badGuyChoice = colors[Math.floor(Math.random()*4)];
+        badGuyMoves.push(badGuyChoice);
+    }
+    return badGuyMoves;
+}
+
+
+
