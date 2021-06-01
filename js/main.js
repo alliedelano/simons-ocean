@@ -273,6 +273,10 @@ function createGamePlay(){
     opponent.setAttribute('id', 'opponent');
     gameBoard.appendChild(opponent);
 
+    const badGuyImg = document.createElement('div');
+    badGuyImg.setAttribute('id', 'bad-guy-img');
+    opponent.appendChild(badGuyImg);
+
     const sand = document.createElement('div');
     sand.setAttribute('id', 'sand');
     gameBoard.appendChild(sand);
@@ -311,15 +315,15 @@ function worldUp(){
 
 function levelUp(){
     level += 1
-    let levelWithinWorld = level % 4 + 1;
+    let levelWithinWorld;
+    if (level % 4 != 0){
+        levelWithinWorld = level % 4;
+    } else {
+        levelWithinWorld = 4;
+    }
     let levelId = `level-${world}-${levelWithinWorld}`;
     document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
-    console.log(level);
-    console.log(levelWithinWorld);
-    console.log(levelId);
-    worldUp();
 }
-
 
 function renderLevel(){
     createBadGuy();
@@ -329,7 +333,6 @@ function renderLevel(){
 function createBadGuy(){
     let creatureArray = ['starfish', 'shark', 'stingray', 'pufferfish', 'turtle', 'dolphin'];
     randomCreature = creatureArray[Math.floor(Math.random()*6)];
-    const badGuyEl = document.createElement('div');
     badGuyEl.innerText = `${randomCreature} image`;
     const opponentEl = document.getElementById('opponent');
     opponentEl.appendChild(badGuyEl);
