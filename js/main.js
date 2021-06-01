@@ -305,12 +305,13 @@ function worldUp(){
         world += 1;
         let worldId = `world-${world}`;
         document.getElementById(worldId).style.backgroundColor = '#10FDC4';
+        console.log(world);
     }
 }
 
 function levelUp(){
     level += 1
-    let levelWithinWorld = level % world + 1;
+    let levelWithinWorld = level % 4 + 1;
     let levelId = `level-${world}-${levelWithinWorld}`;
     document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
     console.log(level);
@@ -318,6 +319,7 @@ function levelUp(){
     console.log(levelId);
     worldUp();
 }
+
 
 function renderLevel(){
     createBadGuy();
@@ -336,7 +338,7 @@ function createBadGuy(){
 }
 
 function createBadGuyMoves(){
-    let levelWithinWorld = level % world + 1;
+    let levelWithinWorld = level % 4 + 1;
     let movesNum = world * levelWithinWorld + 1;
     for (let i=0; i< movesNum; i++){
         badGuyChoice = colors[Math.floor(Math.random()*4)];
@@ -352,6 +354,7 @@ function createBadGuyMoves(){
 // -- display moves
 // -- player moves
 // -- compare moves
-// -- if right, level up, 
+// -- if right, level up --> see if new world
+// -- if wrong, subtract a life, render level again using same values;
 
 

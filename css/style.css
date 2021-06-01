@@ -60,13 +60,13 @@ header {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto 50px;
     grid-template-areas:
-      "player middle opponent"
+      "player simon opponent"
       "sand sand sand";
 }
 
 
 #player-control {
-    grid-area: player;  
+    grid-area: simon;  
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -126,7 +126,7 @@ header {
 
 
 #next-and-outcomes {
-    grid-area: middle;
+    grid-area: player;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
