@@ -88,9 +88,10 @@ function renderStart(){
 }
 
 //render the story screen//
-function renderStart(){
+function renderStory(){
     blankCanvas();
     createStoryBoard();
+    skipIntro();
     colorAllLevels();
     tellStory();
 }
@@ -107,8 +108,15 @@ function createStoryBoard(){
     const sand = document.createElement('div');
     sand.setAttribute('id', 'sand-story');
     document.body.appendChild(sand, reefPath);
+}
 
-
+function skipIntro(){
+    const skipIntroButton = document.createElement("BUTTON");
+    skipIntroButton.id = 'skip-intro';
+    skipIntroButton.innerText = 'skip intro';
+    const sandEl = document.getElementById('sand-story');
+    sandEl.appendChild(skipIntroButton);
+    skipIntroButton.addEventListener('click', init);
 }
 
 function blankCanvas(){
@@ -161,8 +169,8 @@ function tellStory(){
         startButtonEl.innerText = 'start';
         const storyBoardEl = document.getElementById('story-board');
         storyBoardEl.appendChild(startButtonEl);
-        startButtonEl.addEventListener('click', renderGame)
-    }, 18000);
+        startButtonEl.addEventListener('click', init)
+    }, 16000);
 }
 
 function renderGame(){
@@ -171,6 +179,8 @@ function renderGame(){
     createGameHeader();
     createBadGuyMessage();
     createGamePlay();
+    document.getElementById('world-1').style.backgroundColor = '#10FDC4';
+    document.getElementById('level-1-1').style.backgroundColor = '#F9C3FA';
 }
 
 function createGameHeader(){
@@ -200,6 +210,10 @@ function createBadGuyMessage(){
 }
 
 function createGamePlay(){
+    document.body.style.backgroundColor = '#F6F6F6';
+    document.getElementById('level-journey').style.backgroundColor = '#BFBFC0';
+    unColorAllLevels();
+    
     const gameBoard = document.createElement('section');
     gameBoard.setAttribute('id', 'game-play');
     document.body.appendChild(gameBoard);
@@ -251,6 +265,7 @@ function createGamePlay(){
     const sand = document.createElement('div');
     sand.setAttribute('id', 'sand');
     gameBoard.appendChild(sand);
+    sand.style.backgroundColor = '#DDDDDD';
 }
 
 
@@ -273,3 +288,10 @@ function renderLoss(){
 //for(let i=0; i<array length; i++){badguy.moves.push(Math.random())}
 //make sure it pops up with a random move, not number
 
+
+function worldUp(){
+    if (level % world){
+        world +=1
+
+    }
+}

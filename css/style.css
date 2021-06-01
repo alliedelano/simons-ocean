@@ -23,6 +23,16 @@ header {
 #story-line {
     font-size: 30px;
     color: #04019C;
+
+}
+
+#skip-intro {
+    width: 150px;
+    height: 40px;
+    background: black;
+    color: white;
+    font-size: 25px;
+    align-self: right;
 }
 
 #start {
@@ -149,6 +159,10 @@ header {
 #sand-story {
     background: #F2EBAC;
     height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
 }
 
 #level-journey {
