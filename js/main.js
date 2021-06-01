@@ -62,7 +62,6 @@ const redButton = document.getElementById('red');
 const buttonDiv = document.getElementById('next-and-outcomes');
 const livesEl = document.getElementById('num-lives');
 const reefPath = document.getElementById('level-journey');
-const storyLineEl = document.getElementById('story-line')
 
 //EVENT LISTENERS//
 
@@ -100,9 +99,11 @@ function createStoryBoard(){
     const storyBoard = document.createElement('div');
     storyBoard.setAttribute('id', 'story-board');
     document.body.appendChild(storyBoard, reefPath);
+
     const storyLine = document.createElement('h2');
     storyLine.setAttribute('id', 'story-line');
     storyBoard.appendChild(storyLine);
+
     const sand = document.createElement('div');
     sand.setAttribute('id', 'sand-story');
     document.body.appendChild(sand, reefPath);
@@ -116,27 +117,113 @@ function blankCanvas(){
 
 function colorAllLevels(){
    let levelDots = document.querySelectorAll('.level');
-   for (dot in levelDots){
-       //dot.classList.('level-complete');
+   for (var i=0; i< levelDots.length; i++){
+       levelDots[i].className += ' level-complete';
    }
    let worldDots = document.querySelectorAll('.world');
-   for (dot in worldDots){
-       //dot.classList.add('world-complete');
+   for (var i=0; i< worldDots.length; i++){
+       worldDots[i].className += ' world-complete';
    }
 }
 
 function tellStory(){
     for (let i=0; i<story.length; i++){
         setTimeout(i=> {
-           storyLineEl.innerText = `${story[i]}`;
-        }, 4000 * i);
+            
+            storyLineEl.innerText = `text is ${story[i]}`;
+        }, 4000 * i, i);
     }
 }
 
 //render the game//
 function renderGame(){
+    //document.getElementById('story-board').remove();
+   //document.getElementById('sand-story').remove();
+    createGameHeader();
+    createBadGuyMessage();
+    createGamePlay();
+}
+
+function createGameHeader(){
+    const headerEl = document.createElement('header');
+    headerEl.setAttribute('id', 'top-header');
+    document.body.appendChild(headerEl);
+    const livesEl = document.createElement('div');
+    livesEl.setAttribute('id', 'lives');
+    headerEl.appendChild(livesEl);
+    const livesBack = document.createElement('div');
+    livesBack.setAttribute('id', 'player-image');
+    livesEl.appendChild(livesBack);
+    const numLivesEl = document.createElement('div');
+    numLivesEl.setAttribute('id', 'num-lives');
+    numLivesEl.innerText = `Lives: ${lives}`;
+    livesEl.appendChild(numLivesEl);
 
 }
+
+function createBadGuyMessage(){
+    const messageEl = document.createElement('div');
+    messageEl.setAttribute('id', 'message');
+    document.body.appendChild(messageEl);
+    const tauntMessage = document.createElement('h3');
+    tauntMessage.setAttribute('id', 'bad-message');
+    messageEl.appendChild(tauntMessage);
+}
+
+function createGamePlay(){
+    const gameBoard = document.createElement('section');
+    gameBoard.setAttribute('id', 'game-play');
+    document.body.appendChild(gameBoard);
+    
+    const playerControl = document.createElement('div');
+    playerControl.setAttribute('id', 'player-control');
+    gameBoard.appendChild(playerControl);
+
+    const topButtons = document.createElement('div');
+    topButtons.setAttribute('id', 'top-buttons');
+    playerControl.appendChild(topButtons);
+
+    const blueButtonEl = document.createElement("BUTTON");
+    blueButtonEl.setAttribute('id', 'blue');
+    blueButtonEl.setAttribute('class', 'color');
+    blueButtonEl.classList.add('simonColor');
+    topButtons.appendChild(blueButtonEl);
+
+    const greenButtonEl = document.createElement("BUTTON");
+    greenButtonEl.setAttribute('id', 'green');
+    greenButtonEl.setAttribute('class', 'color');
+    greenButton.classList.add('simonColor');
+    topButtons.appendChild(greenButtonEl);
+    
+    const bottomButtons = document.createElement('div');
+    bottomButtons.setAttribute('id', 'bottom-buttons')
+    playerControl.appendChild(bottomButtons);
+
+    const yellowButtonEl = document.createElement("BUTTON");
+    yellowButtonEl.setAttribute('id', 'yellow');
+    yellowButtonEl.setAttribute('class', 'color');
+    yellowButtonEl.classList.add('simonColor');
+    bottomButtons.appendChild(yellowButtonEl)
+
+    const redButtonEl = document.createElement("BUTTON");
+    redButtonEl.setAttribute('id', 'red');
+    redButtonEl.setAttribute('class', 'color');
+    redButtonEl.classList.add('simonColor');
+    bottomButtons.appendChild(redButtonEl);
+
+    const nextOutcomes = document.createElement('div');
+    nextOutcomes.setAttribute('id', 'next-and-outcomes');
+    gameBoard.appendChild(nextOutcomes);
+
+    const opponent = document.createElement('div');
+    opponent.setAttribute('id', 'opponent');
+    gameBoard.appendChild(opponent);
+
+    const sand = document.createElement('div');
+    sand.setAttribute('id', 'sand');
+    gameBoard.appendChild(sand);
+}
+
 
 //render the win screen//
 function renderWin(){
@@ -151,5 +238,9 @@ function renderLoss(){
 //FUNCTIONS
 
 
-
+//generate a random array for bad guy - for loop and push
+//const bad guy array = length (function of world and level)
+//remember our bad guy array is badGuy.moves 
+//for(let i=0; i<array length; i++){badguy.moves.push(Math.random())}
+//make sure it pops up with a random move, not number
 

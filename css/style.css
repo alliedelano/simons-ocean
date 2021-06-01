@@ -152,7 +152,6 @@ header {
   .level {
     height: 20px;
     width: 20px;
-    background-color: #F6F6F6;
     border-radius: 50%;
     padding: 15px;
     margin: 5px
@@ -161,28 +160,25 @@ header {
   .world {
     height: 30px;
     width: 30px;
-    background-color: #898989;
     border-radius: 50%;
     padding: 15px;
     margin: 5px
+  }
+
+  .level-incomplete {
+    background-color: #F6F6F6;
+  }
+  
+  .world-incomplete {
+    background-color: #898989;
   }
 
   .level-complete {
-    height: 20px;
-    width: 20px;
     background-color: #F9C3FA;
-    border-radius: 50%;
-    padding: 15px;
-    margin: 5px
   }
 
   .world-complete {
-    height: 30px;
-    width: 30px;
     background-color: #10FDC4;
-    border-radius: 50%;
-    padding: 15px;
-    margin: 5px
   }
 
 
