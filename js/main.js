@@ -328,6 +328,7 @@ function levelUp(){
 function renderLevel(){
     createBadGuy();
     createBadGuyMoves();
+
 }
 
 function createBadGuy(){
@@ -341,13 +342,26 @@ function createBadGuy(){
 }
 
 function createBadGuyMoves(){
-    let levelWithinWorld = level % 4 + 1;
-    let movesNum = world * levelWithinWorld + 1;
-    for (let i=0; i< movesNum; i++){
+    badGuyMoves = [];
+    let levelWithinWorld;
+    if (level % 4 != 0){
+        levelWithinWorld = level % 4;
+    } else {
+        levelWithinWorld = 4;
+    }
+    let movesMax = world + levelWithinWorld;
+    for (let i=0; i < movesMax; i++){
         badGuyChoice = colors[Math.floor(Math.random()*4)];
         badGuyMoves.push(badGuyChoice);
+        console.log(world, levelWithinWorld);
     }
     return badGuyMoves;
+}
+
+function createReadyButton(){
+    const readyButton = document.createElement('BUTTON');
+    readyButton.id = 'ready';
+    document.getElementById('next-and-outcomes').appendChild(readyButton);
 }
 
 ////// GAME PLAY ///
