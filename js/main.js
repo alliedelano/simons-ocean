@@ -78,7 +78,7 @@ function init(){
     playerMoves = [];
     badGuyMoves = [];
     lives = 5;
-    world = 1;
+    world = 0;
     level = 1;
     renderGame()
 };
@@ -191,7 +191,6 @@ function renderGame(){
     createGameHeader();
     createBadGuyMessage();
     createGamePlay();
-    document.getElementById('world-1').style.backgroundColor = '#10FDC4';
     document.getElementById('level-1-1').style.backgroundColor = '#F9C3FA';
     renderLevel();
 }
@@ -271,9 +270,10 @@ function createGamePlay(){
     nextOutcomes.setAttribute('id', 'next-and-outcomes');
     gameBoard.appendChild(nextOutcomes);
 
-    const readyMsgEl = document.createElement('h2');
-    readyMsgEl.innerText = "it's easy - just watch them and do what they do. ready?";
-    nextOutcomes.append(readyMsgEl);
+    const playerMsgEl = document.createElement('h2');
+    playerMsgEl.setAttribute('id', 'player-message');
+    playerMsgEl.innerText = "it's easy - just watch them and do what they do. ready?";
+    nextOutcomes.append(playerMsgEl);
 
     const readyButton = document.createElement('BUTTON');
     readyButton.id = 'ready';
@@ -373,11 +373,36 @@ function createBadGuyMoves(){
 }
 
 function simonMove(){
-    console.log("simon moved - but need to delete this and find it")
+    setTimeout(function(){
+        document.getElementById('ready').remove();
+        for(move in badGuyMoves){
+            moveEl = document.getElementById(badGuyMoves[move]);
+            moveElClasses = moveEl.classList;
+            if (moveElClasses.contains('active')){
+                moveEl.classList.remove('active');
+            }
+        }
+    }, 500);
+    setTimeout(function(){
+        simonDisplays();
+    }, 1500);
 }
 
 function simonDisplays(){
-    console.log("display the bad guy moves")
+    for (i=0; i< badGuyMoves.length; i++){
+        setTimeout(i=> {
+            moveEl = document.getElementById(badGuyMoves[i]);
+            moveElClasses = moveEl.classList;
+            moveEl.classList.add('active');
+            setTimeout(i=> {
+                moveEl.classList.remove('active')
+            }, 1000 * i, i);
+        }, 2000 * i, i)
+    }
+    setTimeout(function(){
+        document.getElementById('player-message').innerText = 'your turn!';
+        addButtonListeners();
+    }, 2000 * badGuyMoves.length);
 }
 
 function addButtonListeners(){
@@ -429,4 +454,5 @@ function loseALife(){
 // -- if right, level up --> see if new world
 // -- if wrong, subtract a life, render level again using same values;
 // -- if world = 5, you play Simon
+// add styling for each world
 
