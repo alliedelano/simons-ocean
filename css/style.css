@@ -20,6 +20,11 @@ header {
     height: 60vh;
 }
 
+#game-title {
+    font-size: 50px;
+    color: #04019C;
+}
+
 #story-line {
     font-size: 30px;
     color: #04019C;
@@ -33,6 +38,15 @@ header {
     color: white;
     font-size: 25px;
     align-self: right;
+}
+
+#start-button, #begin {
+    width: 150px;
+    height: 40px;
+    background:#ff00dd;
+    color: white;
+    font-size: 25px;
+
 }
 
 #start {
@@ -98,13 +112,13 @@ header {
 }
 
 .active {
-    animation: lightUp 1s;
-    border: black;
+    animation: lightUp 1.5s;
+    border: #ff00dd;
 }
 
 @keyframes lightUp {
   from {
-    box-shadow: 0 0 100px -10px rgb(252, 247, 0);
+    box-shadow: 0 0 100px -10px #ff00dd;
   }
 }
 

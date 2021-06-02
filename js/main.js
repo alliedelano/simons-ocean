@@ -95,14 +95,20 @@ function devSkip(){
 }
 
 function renderStart(){
-    const beginMsg = document.createElement('div');
-    beginMsg.innerHTML = "Simon Game. Press Start to Begin";
+    createStoryBoard();
+    const gameTitle = document.getElementById('story-line')
+    gameTitle.id = 'game-title';
+    gameTitle.innerText = "Simon's Ocean";
+    const startButton = document.createElement('BUTTON');
+    startButton.id = 'start-button';
+    startButton.innerText = 'Start';
+    document.getElementById('story-board').appendChild(startButton);
+    startButton.addEventListener('click', renderStory);
 }
 
-//render the story screen//
 function renderStory(){
-    blankCanvas();
-    createStoryBoard();
+    document.getElementById('game-title').id = 'story-line';
+    document.getElementById('start-button').remove();
     skipIntro();
     colorAllLevels();
     tellStory();
@@ -131,11 +137,6 @@ function skipIntro(){
     skipIntroButton.addEventListener('click', init);
 }
 
-function blankCanvas(){
-    document.getElementById('top-header').remove();
-    document.getElementById('message').remove();
-    document.getElementById('game-play').remove();
-}
 
 function colorAllLevels(){
    let levelDots = document.querySelectorAll('.level');
@@ -176,12 +177,13 @@ function tellStory(){
         unColorAllLevels();
     }, 6000);
     setTimeout(function(){
-        const startButtonEl = document.createElement('BUTTON');
-        startButtonEl.id = 'start';
-        startButtonEl.innerText = 'start';
+        const beginButtonEl = document.createElement('BUTTON');
+        beginButtonEl.id = 'begin';
+        beginButtonEl.innerText = 'begin';
         const storyBoardEl = document.getElementById('story-board');
-        storyBoardEl.appendChild(startButtonEl);
-        startButtonEl.addEventListener('click', init)
+        storyBoardEl.appendChild(beginButtonEl);
+        beginButtonEl.addEventListener('click', init)
+        document.getElementById('skip-intro').remove();
     }, 16000);
 }
 
@@ -439,6 +441,7 @@ function createReadyButton(){
 
 function playerMove(){
     playerMoves.push(this.id);
+    //need to remove focus//
     compareMoves();
 
 }
