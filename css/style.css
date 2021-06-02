@@ -133,7 +133,7 @@ header {
     align-items: center;
 }
 
-#next-and-outcomes * {
+#ready {
     width: 150px;
     height: 50px;
     background: black;

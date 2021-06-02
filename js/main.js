@@ -66,6 +66,7 @@ const redButton = document.getElementById('red');
 const buttonDiv = document.getElementById('next-and-outcomes');
 const livesEl = document.getElementById('num-lives');
 const reefPath = document.getElementById('level-journey');
+const playerSpace = document.getElementById('next-and-outcomes');
 
 //EVENT LISTENERS//
 
@@ -192,6 +193,7 @@ function renderGame(){
     createGamePlay();
     document.getElementById('world-1').style.backgroundColor = '#10FDC4';
     document.getElementById('level-1-1').style.backgroundColor = '#F9C3FA';
+    renderLevel();
 }
 
 function createGameHeader(){
@@ -269,6 +271,16 @@ function createGamePlay(){
     nextOutcomes.setAttribute('id', 'next-and-outcomes');
     gameBoard.appendChild(nextOutcomes);
 
+    const readyMsgEl = document.createElement('h2');
+    readyMsgEl.innerText = "it's easy - just watch them and do what they do. ready?";
+    nextOutcomes.append(readyMsgEl);
+
+    const readyButton = document.createElement('BUTTON');
+    readyButton.id = 'ready';
+    readyButton.innerText = 'ready!'
+    nextOutcomes.append(readyButton);
+    readyButton.addEventListener('click', simonMove)
+
     const opponent = document.createElement('div');
     opponent.setAttribute('id', 'opponent');
     gameBoard.appendChild(opponent);
@@ -328,15 +340,13 @@ function levelUp(){
 function renderLevel(){
     createBadGuy();
     createBadGuyMoves();
-
 }
 
 function createBadGuy(){
     let creatureArray = ['starfish', 'shark', 'stingray', 'pufferfish', 'turtle', 'dolphin'];
     randomCreature = creatureArray[Math.floor(Math.random()*6)];
+    const badGuyEl = document.getElementById('opponent')
     badGuyEl.innerText = `${randomCreature} image`;
-    const opponentEl = document.getElementById('opponent');
-    opponentEl.appendChild(badGuyEl);
     const tauntMsgEl = document.getElementById('bad-message');
     tauntMsgEl.innerText = `${creatures[randomCreature].message}`;
 }
@@ -358,10 +368,8 @@ function createBadGuyMoves(){
     return badGuyMoves;
 }
 
-function createReadyButton(){
-    const readyButton = document.createElement('BUTTON');
-    readyButton.id = 'ready';
-    document.getElementById('next-and-outcomes').appendChild(readyButton);
+function simonMove(){
+    console.log("bad guy simon moving!")
 }
 
 ////// GAME PLAY ///
