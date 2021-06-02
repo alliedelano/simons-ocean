@@ -344,6 +344,7 @@ function levelUp(){
 function renderLevel(){
     createBadGuy();
     createBadGuyMoves();
+    createReadyButton();
 }
 
 function createBadGuy(){
@@ -375,6 +376,8 @@ function createBadGuyMoves(){
 function simonMove(){
     setTimeout(function(){
         document.getElementById('ready').remove();
+        document.getElementById('player-message').innerText = 'here they go...'
+        playerMoves = [];
         for(move in badGuyMoves){
             moveEl = document.getElementById(badGuyMoves[move]);
             moveElClasses = moveEl.classList;
@@ -382,7 +385,7 @@ function simonMove(){
                 moveEl.classList.remove('active');
             }
         }
-    }, 500);
+    }, 200);
     setTimeout(function(){
         simonDisplays();
     }, 1500);
@@ -396,7 +399,7 @@ function simonDisplays(){
             moveEl.classList.add('active');
             setTimeout(i=> {
                 moveEl.classList.remove('active')
-            }, 1000 * i, i);
+            }, 500 * i, i);
         }, 2000 * i, i)
     }
     setTimeout(function(){
@@ -406,17 +409,26 @@ function simonDisplays(){
 }
 
 function addButtonListeners(){
-    blueButton.addEventListener('click', playerMove);
-    greenButton.addEventListener('click', playerMove);
-    yellowButton.addEventListener('click', playerMove);
-    redButton.addEventListener('click', playerMove);
+    document.getElementById('blue').addEventListener('click', playerMove);
+    document.getElementById('green').addEventListener('click', playerMove);
+    document.getElementById('yellow').addEventListener('click', playerMove);
+    document.getElementById('red').addEventListener('click', playerMove);
 }
 
 function removeButtonListeners(){
-    blueButton.removeEventListener('click', playerMove);
-    greenButton.removeEventListener('click', playerMove);
-    yellowButton.removeEventListener('click', playerMove);
-    redButton.removeEventListener('click', playerMove)
+    document.getElementById('blue').removeEventListener('click', playerMove);
+    document.getElementById('green').removeEventListener('click', playerMove);
+    document.getElementById('yellow').removeEventListener('click', playerMove);
+    document.getElementById('red').removeEventListener('click', playerMove)
+}
+
+function createReadyButton(){
+    const readyButton = document.createElement('BUTTON');
+    readyButton.id = 'ready';
+    readyButton.innerText = 'ready!';
+    const nextOutcomes = document.getElementById('next-and-outcomes');
+    nextOutcomes.append(readyButton);
+    readyButton.addEventListener('click', simonMove)
 }
 
 function playerMove(){
@@ -425,16 +437,36 @@ function playerMove(){
 }
 
 function compareMoves(){
-    console.log("compare moves to badGuyMoves")
+    for (move in playerMoves){
+        if (playerMoves[move] === badGuyMoves[move] && playerMoves.length != badGuyMoves.length){
+            console.log('not long enough yet!');
+        } else if (playerMoves[move] != badGuyMoves[move]) {
+            wrongSequence();
+        }
+    }
+    if (playerMoves[move] === badGuyMoves[move] && playerMoves.length === badGuyMoves.length){
+        youDidIt();
+    }
 }
 
 function youDidIt(){
-    console.log("that was correct!")
+    setTimeout(function(){
+        document.getElementById('player-message').innerText = 'nice job, but there is a new bad guy now. ready?'
+        removeButtonListeners();
+        levelUp();
+        renderLevel();
+    }, 500);
 }
 
 function wrongSequence(){
-    console.log("incorrect, lose a life");
-    console.log("re-render the level");
+    document.getElementById('player-message').innerText = "bummer. that wasn't quite it. want to try again?";
+    loseALife();
+    const replayLevelButton = document.createElement("BUTTON");
+    replayLevelButton.id = 'replay';
+    replayLevelButton.innerText = 'sure!';
+    const nextOutcomes = document.getElementById('next-and-outcomes');
+    nextOutcomes.append(readyButton);
+    readyButton.addEventListener('click', simonMove);
 }
 
 function loseALife(){
@@ -442,6 +474,12 @@ function loseALife(){
     if (lives = 0){
         renderLoss;
     }
+}
+
+function replayLevel(){
+    document.getElementById('replay').remove()
+    createBadGuyMoves()
+    createReadyButton()
 }
 
 ////// GAME PLAY ///
