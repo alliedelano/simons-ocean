@@ -104,6 +104,7 @@ function renderStart(){
     startButton.innerText = 'Start';
     document.getElementById('story-board').appendChild(startButton);
     startButton.addEventListener('click', renderStory);
+    colorAllLevels();
 }
 
 function renderStory(){
@@ -136,7 +137,6 @@ function skipIntro(){
     sandEl.appendChild(skipIntroButton);
     skipIntroButton.addEventListener('click', init);
 }
-
 
 function colorAllLevels(){
    let levelDots = document.querySelectorAll('.level');
@@ -184,7 +184,7 @@ function tellStory(){
         storyBoardEl.appendChild(beginButtonEl);
         beginButtonEl.addEventListener('click', init)
         document.getElementById('skip-intro').remove();
-    }, 16000);
+    }, 17000);
 }
 
 function renderGame(){
@@ -243,13 +243,11 @@ function createGamePlay(){
     const blueButtonEl = document.createElement("BUTTON");
     blueButtonEl.setAttribute('id', 'blue');
     blueButtonEl.setAttribute('class', 'color');
-    blueButtonEl.classList.add('simonColor');
     topButtons.appendChild(blueButtonEl);
 
     const greenButtonEl = document.createElement("BUTTON");
     greenButtonEl.setAttribute('id', 'green');
     greenButtonEl.setAttribute('class', 'color');
-    greenButton.classList.add('simonColor');
     topButtons.appendChild(greenButtonEl);
     
     const bottomButtons = document.createElement('div');
@@ -259,13 +257,11 @@ function createGamePlay(){
     const yellowButtonEl = document.createElement("BUTTON");
     yellowButtonEl.setAttribute('id', 'yellow');
     yellowButtonEl.setAttribute('class', 'color');
-    yellowButtonEl.classList.add('simonColor');
     bottomButtons.appendChild(yellowButtonEl)
 
     const redButtonEl = document.createElement("BUTTON");
     redButtonEl.setAttribute('id', 'red');
     redButtonEl.setAttribute('class', 'color');
-    redButtonEl.classList.add('simonColor');
     bottomButtons.appendChild(redButtonEl);
 
     const nextOutcomes = document.createElement('div');
@@ -297,42 +293,62 @@ function createGamePlay(){
     sand.style.backgroundColor = '#DDDDDD';
 }
 
-//render the versus Simon screen
-function renderFinalBoss(){
-    console.log("oh shit it's simon")
-    //your controller moves to the side
-    //there is a new simon with buttons that light up
-    //according to simon color
+function blankCanvas(){
+    document.getElementById('top-header').remove();
+    document.getElementById('message').remove();
+    document.getElementById('game-play').remove();
 }
 
-//render the win screen//
 function renderWin(){
-    console.log('you won the game and beat simon!')
-// can start with the storyboard screen
+    console.log('you won the game and beat simon!');
+    blankCanvas();
+    createStoryBoard();
+    colorAllLevels();
+    const winMsgEl = document.getElementById('story-line')
+    winMsgEl.id = 'you-won';
+    winMsgEl.innerText = "You won! You beat Simon and saved the sea!";
+    const playAgainButton = document.createElement('BUTTON');
+    playAgainButton.id = 'play-again-button';
+    playAgainButton.innerText = 'Play Again!';
+    document.getElementById('story-board').appendChild(playAgainButton);
+    playAgainButton.addEventListener('click', renderStory);
 }
 
-//render the lose/play again screen//
 function renderLoss(){
     console.log('no more lives - you lost the game')
-// can start with the storyboard screen
+    blankCanvas();
+    createStoryBoard();
+    colorAllLevels();
+    const loseMsgEl = document.getElementById('story-line')
+    loseMsgEl.id = 'you-lost';
+    loseMsgEl.innerText = "You lost! Want to play again?";
+    const playAgainButton = document.createElement('BUTTON');
+    playAgainButton.id = 'play-again-button';
+    playAgainButton.innerText = 'replay!';
+    document.getElementById('story-board').appendChild(playAgainButton);
+    playAgainButton.addEventListener('click', renderStory);
 }
 
 //FUNCTIONS
 
 function levelUp(){
-    level += 1
-    let levelWithinWorld;
-    if (level % 5 != 0){
+    if (level === 20){
+        renderWin();
+    } else {
+        level += 1
+        let levelWithinWorld;
+        if (level % 5 != 0){
         levelWithinWorld = level % 5;
         world = Math.trunc(level/5) + 1;
         let levelId = `level-${world}-${levelWithinWorld}`;
         document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
         colorWorld();
-    } else {
+        } else {
         levelWithinWorld = 5;
         world = level/5;
         let worldId = `world-${world}`;
         document.getElementById(worldId).style.backgroundColor = '#10FDC4';
+        }
     }
 }
 
