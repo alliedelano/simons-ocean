@@ -317,30 +317,22 @@ function renderLoss(){
 
 //FUNCTIONS
 
-function worldUp(){
-    if (level % 5 === 0){
-        world += 1;
-        let worldId = `world-${world}`;
-        document.getElementById(worldId).style.backgroundColor = '#10FDC4';
-        console.log(world);
-        if (world === 5){
-            console.log("it's level 5, now you play simon")
-            renderFinalBoss;
-        }
-    }
-}
-
 function levelUp(){
     level += 1
     let levelWithinWorld;
     if (level % 5 != 0){
         levelWithinWorld = level % 5;
+        world = Math.trunc(level/5) + 1;
+        let levelId = `level-${world}-${levelWithinWorld}`;
+        document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
     } else {
         levelWithinWorld = 5;
+        world = level/5;
+        let worldId = `world-${world}`;
+        document.getElementById(worldId).style.backgroundColor = '#10FDC4';
+        let levelId = `level-${world}-${levelWithinWorld}`;
+        document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
     }
-    let levelId = `level-${world}-${levelWithinWorld}`;
-    document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
-    worldUp();
 }
 
 function renderLevel(){
@@ -360,10 +352,10 @@ function createBadGuy(){
 function createBadGuyMoves(){
     badGuyMoves = [];
     let levelWithinWorld;
-    if (level % 4 != 0){
-        levelWithinWorld = level % 4;
+    if (level % 5 != 0){
+        levelWithinWorld = level % 5;
     } else {
-        levelWithinWorld = 4;
+        levelWithinWorld = 5;
     }
     let movesMax = world + levelWithinWorld;
     for (let i=0; i < movesMax; i++){
