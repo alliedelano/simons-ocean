@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background: #ECFFFF;
+    background: #8adfdf;
     font-family: Epilogue, sans-serif;
 }
 
@@ -104,12 +104,12 @@ header {
 
 @keyframes lightUp {
   from {
-    box-shadow: 0 0 100px -10px black;
+    box-shadow: 0 0 100px -10px rgb(252, 247, 0);
   }
 }
 
 #blue {
-    background: #87DBFF;
+    background: #1b57ff;
 }  
 
 #green {
@@ -156,7 +156,7 @@ header {
 
 #sand {
     grid-area: sand;
-    background: #F2EBAC
+    background: #F2EBAC;
 }
 
 #sand-story {

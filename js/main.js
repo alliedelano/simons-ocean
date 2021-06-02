@@ -340,7 +340,7 @@ function colorWorld(){
     } else if (world === 3){
         document.getElementById('sand').style.backgroundColor = "#F2EBAC";
     } else if (world === 4){
-        document.body.style.backgroundColor = "#ECFFFF"
+        document.body.style.backgroundColor = "#8adfdf"
     } else {
         console.log('nothing to see here');
     }
@@ -405,7 +405,7 @@ function simonDisplays(){
             moveEl.classList.add('active');
             setTimeout(i=> {
                 moveEl.classList.remove('active')
-            }, 500 * i, i);
+            }, 300 * i, i);
         }, 2000 * i, i)
     }
     setTimeout(function(){
@@ -439,7 +439,8 @@ function createReadyButton(){
 
 function playerMove(){
     playerMoves.push(this.id);
-    compareMoves()
+    compareMoves();
+
 }
 
 function compareMoves(){
