@@ -350,7 +350,7 @@ function createBadGuy(){
     let creatureArray = ['starfish', 'shark', 'stingray', 'pufferfish', 'turtle', 'dolphin'];
     randomCreature = creatureArray[Math.floor(Math.random()*6)];
     const badGuyEl = document.getElementById('opponent')
-    badGuyEl.innerText = `${randomCreature} image`;
+    badGuyEl.innerHTML = `<img src=${creatures[randomCreature].imgUrl}>`;
     const tauntMsgEl = document.getElementById('bad-message');
     tauntMsgEl.innerText = `${creatures[randomCreature].message}`;
 }
@@ -370,6 +370,10 @@ function createBadGuyMoves(){
         console.log(world, levelWithinWorld);
     }
     return badGuyMoves;
+}
+
+function simonMove(){
+    console.log("simon moved - but need to delete this and find it")
 }
 
 function simonDisplays(){

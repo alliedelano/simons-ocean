@@ -143,12 +143,15 @@ header {
 
 #opponent {
     grid-area: opponent;
-    border: black 5px solid;
     font-size: 30px; 
     display: flex;
     flex-wrap: wrap;
     justify-items: center;
     align-items: center;
+}
+
+#opponent img {
+    max-width: 90%;
 }
 
 #sand {
