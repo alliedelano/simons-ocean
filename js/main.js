@@ -330,8 +330,6 @@ function levelUp(){
         world = level/5;
         let worldId = `world-${world}`;
         document.getElementById(worldId).style.backgroundColor = '#10FDC4';
-        let levelId = `level-${world}-${levelWithinWorld}`;
-        document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
     }
 }
 
@@ -354,8 +352,10 @@ function createBadGuyMoves(){
     let levelWithinWorld;
     if (level % 5 != 0){
         levelWithinWorld = level % 5;
+        world = Math.trunc(level/5) + 1;
     } else {
         levelWithinWorld = 5;
+        world = level/5;
     }
     let movesMax = world + levelWithinWorld;
     for (let i=0; i < movesMax; i++){
