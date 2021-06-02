@@ -4,32 +4,32 @@ const colors = ['blue', 'green', 'yellow', 'red'];
 
 const creatures = {
     starfish: {
-        imgUrl: 'starfish img',
+        imgUrl: 'imgs/starfish.png',
         animation: 'swirl',
         message: "don't mess with the starfish",
     },
     shark: {
-        imgUrl: 'shark img',
+        imgUrl: 'imgs/shark.png',
         animation: 'upDown',
         message: "sharks can do anything"
     },
     stingray: {
-        imgUrl: 'stingray img',
+        imgUrl: 'imgs/stingray.png',
         animation: 'rightLeft',
         message: "Don't mess up or I'll sting you!"
     },
     pufferfish: {
-        imgUrl: 'pufferfish img',
+        imgUrl: 'imgs/pufferfish.png',
         animation: 'biggerSmaller',
         message: "I'll huff and I'll puff and I'll blow you away"
     },
     turtle: {
-        imgUrl: 'turtle img',
+        imgUrl: 'imgs/turtle.png',
         animation: 'wiggle',
         message: "you'll leave shell-shocked!"
     },
     dolphin: {
-        imgUrl: 'dolphin img',
+        imgUrl: 'imgs/dolphin.png',
         animation: 'upAndOver',
         message: "see if you can keep up!"
     },
@@ -335,6 +335,7 @@ function levelUp(){
     }
     let levelId = `level-${world}-${levelWithinWorld}`;
     document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
+    worldUp();
 }
 
 function renderLevel(){
@@ -374,8 +375,8 @@ function simonMove(){
 
 ////// GAME PLAY ///
 
-//start game -->
-// -- generate bad guy with moves
+//start game --> COMPLETE
+// -- generate bad guy with moves - COMPLETE
 // -- display moves
 // -- player moves
 // -- compare moves
