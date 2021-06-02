@@ -325,11 +325,24 @@ function levelUp(){
         world = Math.trunc(level/5) + 1;
         let levelId = `level-${world}-${levelWithinWorld}`;
         document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
+        colorWorld();
     } else {
         levelWithinWorld = 5;
         world = level/5;
         let worldId = `world-${world}`;
         document.getElementById(worldId).style.backgroundColor = '#10FDC4';
+    }
+}
+
+function colorWorld(){
+    if (world === 2){
+        document.getElementById('level-journey').style.backgroundColor = "#04019C";
+    } else if (world === 3){
+        document.getElementById('sand').style.backgroundColor = "#F2EBAC";
+    } else if (world === 4){
+        document.body.style.backgroundColor = "#ECFFFF"
+    } else {
+        console.log('nothing to see here');
     }
 }
 
