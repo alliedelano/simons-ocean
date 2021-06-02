@@ -78,7 +78,7 @@ function init(){
     playerMoves = [];
     badGuyMoves = [];
     lives = 5;
-    world = 0;
+    world = 1;
     level = 1;
     renderGame()
 };
@@ -277,7 +277,7 @@ function createGamePlay(){
 
     const readyButton = document.createElement('BUTTON');
     readyButton.id = 'ready';
-    readyButton.innerText = 'ready!'
+    readyButton.innerText = 'ready!';
     nextOutcomes.append(readyButton);
     readyButton.addEventListener('click', simonMove)
 
@@ -305,18 +305,20 @@ function renderFinalBoss(){
 
 //render the win screen//
 function renderWin(){
+    console.log('you won the game and beat simon!')
 // can start with the storyboard screen
 }
 
 //render the lose/play again screen//
 function renderLoss(){
+    console.log('no more lives - you lost the game')
 // can start with the storyboard screen
 }
 
 //FUNCTIONS
 
 function worldUp(){
-    if (level % 4 === 0){
+    if (level % 5 === 0){
         world += 1;
         let worldId = `world-${world}`;
         document.getElementById(worldId).style.backgroundColor = '#10FDC4';
@@ -331,10 +333,10 @@ function worldUp(){
 function levelUp(){
     level += 1
     let levelWithinWorld;
-    if (level % 4 != 0){
-        levelWithinWorld = level % 4;
+    if (level % 5 != 0){
+        levelWithinWorld = level % 5;
     } else {
-        levelWithinWorld = 4;
+        levelWithinWorld = 5;
     }
     let levelId = `level-${world}-${levelWithinWorld}`;
     document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
@@ -344,7 +346,6 @@ function levelUp(){
 function renderLevel(){
     createBadGuy();
     createBadGuyMoves();
-    createReadyButton();
 }
 
 function createBadGuy(){
@@ -451,35 +452,46 @@ function compareMoves(){
 
 function youDidIt(){
     setTimeout(function(){
-        document.getElementById('player-message').innerText = 'nice job, but there is a new bad guy now. ready?'
+        document.getElementById('player-message').innerText = 'nice job!'
         removeButtonListeners();
+    }, 200);
+    setTimeout(function(){
         levelUp();
         renderLevel();
-    }, 500);
+        document.getElementById('player-message').innerText = 'another bad guy! ready?'
+        createReadyButton();
+    }, 2000)
 }
 
 function wrongSequence(){
+    removeButtonListeners();
     document.getElementById('player-message').innerText = "bummer. that wasn't quite it. want to try again?";
     loseALife();
     const replayLevelButton = document.createElement("BUTTON");
     replayLevelButton.id = 'replay';
     replayLevelButton.innerText = 'sure!';
     const nextOutcomes = document.getElementById('next-and-outcomes');
-    nextOutcomes.append(readyButton);
-    readyButton.addEventListener('click', simonMove);
+    nextOutcomes.append(replayLevelButton);
+    replayLevelButton.addEventListener('click', replayLevel);
 }
 
 function loseALife(){
     lives -= 1;
-    if (lives = 0){
-        renderLoss;
+    document.getElementById('num-lives').innerText = `Lives: ${lives}`;
+    checkForLoss();
+}
+
+function checkForLoss(){
+    if(lives < 0){
+        renderLoss()
     }
 }
 
 function replayLevel(){
     document.getElementById('replay').remove()
-    createBadGuyMoves()
-    createReadyButton()
+    createReadyButton();
+    renderLevel();
+    document.getElementById('player-message').innerText = 'another bad guy! ready?'
 }
 
 ////// GAME PLAY ///
