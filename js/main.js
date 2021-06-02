@@ -295,26 +295,25 @@ function createGamePlay(){
     sand.style.backgroundColor = '#DDDDDD';
 }
 
+//render the versus Simon screen
+function renderFinalBoss(){
+    console.log("oh shit it's simon")
+    //your controller moves to the side
+    //there is a new simon with buttons that light up
+    //according to simon color
+}
 
 //render the win screen//
 function renderWin(){
-
+// can start with the storyboard screen
 }
 
 //render the lose/play again screen//
 function renderLoss(){
-
+// can start with the storyboard screen
 }
 
 //FUNCTIONS
-
-
-//generate a random array for bad guy - for loop and push
-//const bad guy array = length (function of world and level)
-//remember our bad guy array is badGuy.moves 
-//for(let i=0; i<array length; i++){badguy.moves.push(Math.random())}
-//make sure it pops up with a random move, not number
-
 
 function worldUp(){
     if (level % 4 === 0){
@@ -322,6 +321,10 @@ function worldUp(){
         let worldId = `world-${world}`;
         document.getElementById(worldId).style.backgroundColor = '#10FDC4';
         console.log(world);
+        if (world === 5){
+            console.log("it's level 5, now you play simon")
+            renderFinalBoss;
+        }
     }
 }
 
@@ -369,8 +372,47 @@ function createBadGuyMoves(){
     return badGuyMoves;
 }
 
-function simonMove(){
-    console.log("bad guy simon moving!")
+function simonDisplays(){
+    console.log("display the bad guy moves")
+}
+
+function addButtonListeners(){
+    blueButton.addEventListener('click', playerMove);
+    greenButton.addEventListener('click', playerMove);
+    yellowButton.addEventListener('click', playerMove);
+    redButton.addEventListener('click', playerMove);
+}
+
+function removeButtonListeners(){
+    blueButton.removeEventListener('click', playerMove);
+    greenButton.removeEventListener('click', playerMove);
+    yellowButton.removeEventListener('click', playerMove);
+    redButton.removeEventListener('click', playerMove)
+}
+
+function playerMove(){
+    playerMoves.push(this.id);
+    compareMoves()
+}
+
+function compareMoves(){
+    console.log("compare moves to badGuyMoves")
+}
+
+function youDidIt(){
+    console.log("that was correct!")
+}
+
+function wrongSequence(){
+    console.log("incorrect, lose a life");
+    console.log("re-render the level");
+}
+
+function loseALife(){
+    lives -= 1;
+    if (lives = 0){
+        renderLoss;
+    }
 }
 
 ////// GAME PLAY ///
@@ -382,5 +424,5 @@ function simonMove(){
 // -- compare moves
 // -- if right, level up --> see if new world
 // -- if wrong, subtract a life, render level again using same values;
-
+// -- if world = 5, you play Simon
 
