@@ -80,13 +80,8 @@ function init(){
     lives = 5;
     world = 1;
     level = 1;
-    renderGame()
+    renderGame();
 };
-
-
-
-//render the start screen//
-////////////start button//
 
 //my shortcut function --- DELETE LATER
 function devSkip(){
@@ -143,6 +138,7 @@ function colorAllLevels(){
    for (var i=0; i< levelDots.length; i++){
        levelDots[i].className += ' level-complete';
    }
+
    let worldDots = document.querySelectorAll('.world');
    for (var i=0; i< worldDots.length; i++){
        worldDots[i].className += ' world-complete';
@@ -152,13 +148,21 @@ function colorAllLevels(){
 function unColorAllLevels(){
     let levelDots = document.querySelectorAll('.level');
     for (var i=0; i< levelDots.length; i++){
-        levelDots[i].classList.remove('level-complete');
-        levelDots[i].classList.add('level-incomplete');
+        if (levelDots[i].classList.contains('level-complete')){
+            levelDots[i].classList.remove('level-complete');
+            levelDots[i].classList.add('level-incomplete');
+        } else {
+            levelDots[i].classList.add('level-incomplete');
+        }
     }
     let worldDots = document.querySelectorAll('.world');
     for (var i=0; i< worldDots.length; i++){
-        worldDots[i].classList.remove('world-complete');
-        worldDots[i].classList.add('world-incomplete');
+        if (worldDots[i].classList.contains('world-complete')){
+            worldDots[i].classList.remove('world-complete');
+            worldDots[i].classList.add('world-incomplete');
+        } else {
+            worldDots[i].classList.add('world-incomplete')
+        }
     }
 }
 
@@ -311,7 +315,7 @@ function renderWin(){
     playAgainButton.id = 'play-again-button';
     playAgainButton.innerText = 'Play Again!';
     document.getElementById('story-board').appendChild(playAgainButton);
-    playAgainButton.addEventListener('click', renderStory);
+    playAgainButton.addEventListener('click', init);
 }
 
 function renderLoss(){
@@ -326,10 +330,8 @@ function renderLoss(){
     playAgainButton.id = 'play-again-button';
     playAgainButton.innerText = 'replay!';
     document.getElementById('story-board').appendChild(playAgainButton);
-    playAgainButton.addEventListener('click', renderStory);
+    playAgainButton.addEventListener('click', init);
 }
-
-//FUNCTIONS
 
 function levelUp(){
     if (level === 20){
@@ -341,13 +343,13 @@ function levelUp(){
         levelWithinWorld = level % 5;
         world = Math.trunc(level/5) + 1;
         let levelId = `level-${world}-${levelWithinWorld}`;
-        document.getElementById(levelId).style.backgroundColor = '#F9C3FA';
+        document.getElementById(levelId).className += ' level-complete';;
         colorWorld();
         } else {
         levelWithinWorld = 5;
         world = level/5;
         let worldId = `world-${world}`;
-        document.getElementById(worldId).style.backgroundColor = '#10FDC4';
+        document.getElementById(worldId).className += ' world-complete';;
         }
     }
 }
@@ -518,16 +520,4 @@ function replayLevel(){
     renderLevel();
     document.getElementById('player-message').innerText = 'another bad guy! ready?'
 }
-
-////// GAME PLAY ///
-
-//start game --> COMPLETE
-// -- generate bad guy with moves - COMPLETE
-// -- display moves
-// -- player moves
-// -- compare moves
-// -- if right, level up --> see if new world
-// -- if wrong, subtract a life, render level again using same values;
-// -- if world = 5, you play Simon
-// add styling for each world
 
