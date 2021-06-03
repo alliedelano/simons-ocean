@@ -67,10 +67,11 @@ const buttonDiv = document.getElementById('next-and-outcomes');
 const livesEl = document.getElementById('num-lives');
 const reefPath = document.getElementById('level-journey');
 const playerSpace = document.getElementById('next-and-outcomes');
+const startButton = document.getElementById('start-button');
 
 //EVENT LISTENERS//
 
-
+startButton.addEventListener('click', renderStory);
 
 
 //init//
@@ -89,39 +90,13 @@ function devSkip(){
     init();
 }
 
-function renderStart(){
-    createStoryBoard();
-    const gameTitle = document.getElementById('story-line')
-    gameTitle.id = 'game-title';
-    gameTitle.innerText = "Simon's Ocean";
-    const startButton = document.createElement('BUTTON');
-    startButton.id = 'start-button';
-    startButton.innerText = 'Start';
-    document.getElementById('story-board').appendChild(startButton);
-    startButton.addEventListener('click', renderStory);
-    colorAllLevels();
-}
-
 function renderStory(){
+    
     document.getElementById('game-title').id = 'story-line';
     document.getElementById('start-button').remove();
     skipIntro();
     colorAllLevels();
     tellStory();
-}
-
-function createStoryBoard(){
-    const storyBoard = document.createElement('div');
-    storyBoard.setAttribute('id', 'story-board');
-    document.body.appendChild(storyBoard, reefPath);
-
-    const storyLineEl = document.createElement('h2');
-    storyLineEl.setAttribute('id', 'story-line');
-    storyBoard.appendChild(storyLineEl);
-
-    const sand = document.createElement('div');
-    sand.setAttribute('id', 'sand-story');
-    document.body.appendChild(sand, reefPath);
 }
 
 function skipIntro(){
