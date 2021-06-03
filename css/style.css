@@ -26,11 +26,13 @@ header {
     align-self: center;
     font-weight: bold;
 }
+
 #creature-imgs {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
+
 #crab img {
     max-width: 100px;
 }
@@ -57,7 +59,7 @@ header {
     font-family: Epilogue, sans-serif;
 }
 
-#start-button, #begin, #ready, #replay {
+#start-button, #begin, #ready, #replay, #play-again-button {
     width: 150px;
     height: 40px;
     font-weight: bold;
@@ -164,8 +166,9 @@ header {
     grid-area: player;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 #opponent {
@@ -241,5 +244,10 @@ header {
 .world-complete {
     background-color: #10FDC4;
   }
+
+#you-won, #you-lost {
+    align-self: center;
+    margin: auto auto 50px auto;
+}
 
 

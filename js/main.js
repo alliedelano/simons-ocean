@@ -172,10 +172,10 @@ function tellStory(){
 }
 
 function renderGame(){
-    document.getElementById('story-board').remove();
-    document.getElementById('sand-story').remove();
     document.getElementById('octopus').remove();
     document.getElementById('crab').remove();
+    document.getElementById('story-board').remove();
+    document.getElementById('sand-story').remove();
     createGameHeader();
     createOverallGameMessage();
     createBadGuyMessage();
@@ -309,6 +309,7 @@ function renderWin(){
     playAgainButton.innerText = 'Play Again!';
     document.getElementById('story-board').appendChild(playAgainButton);
     playAgainButton.addEventListener('click', init);
+    createFriends();
 
 }
 
@@ -324,6 +325,7 @@ function renderLoss(){
     playAgainButton.innerText = 'replay!';
     document.getElementById('story-board').appendChild(playAgainButton);
     playAgainButton.addEventListener('click', init);
+    createFriends();
 }
 
 function levelUp(){
@@ -360,7 +362,7 @@ function colorWorld(){
     } else if (world === 3){
         document.getElementById('sand').style.backgroundColor = "#F2EBAC";
     } else if (world === 4){
-        document.body.style.backgroundColor = "#8adfdf";
+        document.body.style.backgroundColor = "#ECFFFF";
     } else {
         return world;
     }
@@ -525,5 +527,20 @@ function replayLevel(){
     createReadyButton();
     renderLevel();
     document.getElementById('player-message').innerText = 'another bad guy! ready?'
+}
+
+function createFriends(){
+    const friendEls = document.createElement('div');
+    friendEls.setAttribute('id', 'creature-imgs');
+    const storyBoardEl = document.getElementById('story-board');
+    storyBoardEl.appendChild(friendEls);
+    const crabImgEl = document.createElement('div');
+    crabImgEl.setAttribute('id', 'crab');
+    friendEls.appendChild(crabImgEl);
+    crabImgEl.innerHTML = `<img src='imgs/crab.png'>`
+    const octopusImgEl = document.createElement('div');
+    octopusImgEl.setAttribute('id', 'octopus');
+    friendEls.appendChild(octopusImgEl);
+    octopusImgEl.innerHTML = `<img src='imgs/octopus.png'>`
 }
 
