@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background: #8adfdf;
+    background: #ECFFFF;
     font-family: Epilogue, sans-serif;
 }
 
@@ -23,6 +23,7 @@ header {
 #game-title {
     font-size: 50px;
     color: #04019C;
+    align-self: center;
 }
 
 #story-line {
@@ -38,24 +39,30 @@ header {
     color: white;
     font-size: 25px;
     align-self: right;
+    border-radius: 12px;
+    font-weight: bold;
+    font-family: Epilogue, sans-serif;
 }
 
-#start-button, #begin {
+#start-button, #begin, #ready, #replay {
     width: 150px;
     height: 40px;
-    background:#ff00dd;
-    color: black;
+    font-weight: bold;
+    background:black;
+    color: white;
     font-size: 25px;
+    font-family: Epilogue, sans-serif;
+    border-radius: 12px;
+    align-self: center;
 
 }
 
-#start {
-    width: 150px;
-    height: 50px;
-    background: #ff00dd;
-    color: black;
-    font-size: 25px;
+#overall-message {
+    font-size: 40px;
+    color: #ff00dd;
+    background: white;
     align-self: center;
+    margin: auto auto 30px auto;
 }
 
 #message {
@@ -107,7 +114,8 @@ header {
 
 @keyframes glow {
     from {
-      box-shadow: 0 0 100px -10px #ff00dd;
+      box-shadow: 0 0 100px -10px #ff00dd inset;
+      border: #ff00dd solid 10px;
     } 
 }
 
@@ -117,7 +125,7 @@ header {
 
 @keyframes lightUp {
   from {
-    box-shadow: 0 0 100px -10px #ff00dd inset;
+    box-shadow: 0 0 100px -10px white inset;
     border: white solid 10px; 
   }
 }
@@ -145,14 +153,6 @@ header {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-}
-
-#ready {
-    width: 150px;
-    height: 50px;
-    background: #ff00dd;
-    color: black;
-    font-size: 25px;
 }
 
 #opponent {
@@ -191,36 +191,41 @@ header {
     flex-grow: 1fr;
     order: 1;
 }
-  
-  .level {
-    height: 20px;
-    width: 20px;
+ 
+
+#level-journey * {
+    align-self: center;
+}
+
+.level {
+    height: 5vh;
+    width: 5vh;
     border-radius: 50%;
-    padding: 15px;
-    margin: 5px
+    padding: 1vh;
+    margin: 1vh;
   }
 
-  .world {
-    height: 30px;
-    width: 30px;
+.world {
+    height: 7vh;
+    width: 7vh;
     border-radius: 50%;
-    padding: 15px;
-    margin: 5px
+    padding: 1vh;
+    margin: 1vh;
   }
 
-  .level-incomplete {
+.level-incomplete {
     background-color: #F6F6F6;
   }
   
-  .world-incomplete {
+.world-incomplete {
     background-color: #898989;
   }
 
-  .level-complete {
+.level-complete {
     background-color: #F9C3FA;
   }
 
-  .world-complete {
+.world-complete {
     background-color: #10FDC4;
   }
 

@@ -1,5 +1,3 @@
-///CONSTANTS///
-
 const colors = ['blue', 'green', 'yellow', 'red'];
 
 const creatures = {
@@ -44,20 +42,14 @@ const story = [
     "The only way to break the spell and get past his army is to beat Simon at his own game, so pay attention!"
 ];
 
-
-//STATE VARIABLES//
-
 let playerMoves;
 let badGuyMoves;
 let lives;
 let world;
 let level;
 let levelWithinWorld;
-let outcome;
 let badGuyCreature;
 
-
-//CASHE ELEMENTS//
 const badMsgEl = document.getElementById('bad-message');
 const blueButton = document.getElementById('blue');
 const greenButton = document.getElementById('green');
@@ -69,12 +61,8 @@ const reefPath = document.getElementById('level-journey');
 const playerSpace = document.getElementById('next-and-outcomes');
 const startButton = document.getElementById('start-button');
 
-//EVENT LISTENERS//
-
 startButton.addEventListener('click', renderStory);
 
-
-//init//
 function init(){
     playerMoves = [];
     badGuyMoves = [];
@@ -84,11 +72,6 @@ function init(){
     renderGame();
 };
 
-//my shortcut function --- DELETE LATER
-function devSkip(){
-    renderStory();
-    init();
-}
 
 function createStoryBoard(){
     const storyBoard = document.createElement('div');
@@ -163,7 +146,7 @@ function tellStory(){
         }, 3000 * i, i);
     }
     setTimeout(function(){
-        document.body.style.backgroundColor = '#898989';
+        document.body.style.backgroundColor = '#F6F6F6';
         document.getElementById('sand-story').style.backgroundColor = '#DDDDDD';
         document.getElementById('level-journey').style.backgroundColor = '#BFBFC0';
         storyLine.style.color = '#000000'
@@ -184,6 +167,7 @@ function renderGame(){
     document.getElementById('story-board').remove();
     document.getElementById('sand-story').remove();
     createGameHeader();
+    createOverallGameMessage();
     createBadGuyMessage();
     createGamePlay();
     document.getElementById('level-1-1').style.backgroundColor = '#F9C3FA';
@@ -205,6 +189,12 @@ function createGameHeader(){
     numLivesEl.innerText = `Lives: ${lives}`;
     livesEl.appendChild(numLivesEl);
 
+}
+
+function createOverallGameMessage(){
+    const overallMsgEl = document.createElement('div');
+    overallMsgEl.setAttribute('id', 'overall-message');
+    document.body.appendChild(overallMsgEl);
 }
 
 function createBadGuyMessage(){
@@ -288,12 +278,12 @@ function createGamePlay(){
 
 function blankCanvas(){
     document.getElementById('top-header').remove();
+    document.getElementById('overall-message').remove();
     document.getElementById('message').remove();
     document.getElementById('game-play').remove();
 }
 
 function renderWin(){
-    console.log('you won the game and beat simon!');
     blankCanvas();
     createStoryBoard();
     colorAllLevels();
@@ -308,7 +298,6 @@ function renderWin(){
 }
 
 function renderLoss(){
-    console.log('no more lives - you lost the game')
     blankCanvas();
     createStoryBoard();
     colorAllLevels();
@@ -346,18 +335,24 @@ function levelUp(){
 function colorWorld(){
     if (world === 2){
         document.getElementById('level-journey').style.backgroundColor = "#04019C";
+        document.getElementById('overall-message').innerText = "You brought color back to the reef!"
     } else if (world === 3){
         document.getElementById('sand').style.backgroundColor = "#F2EBAC";
+        document.getElementById('overall-message').innerText = "You brought color back to the sand!"
     } else if (world === 4){
-        document.body.style.backgroundColor = "#8adfdf"
+        document.body.style.backgroundColor = "#8adfdf";
+        document.getElementById('overall-message').innerText = "You brought color back to the water!"
     } else {
-        console.log('nothing to see here');
+        return world;
     }
 }
 
 function renderLevel(){
     createBadGuy();
     createBadGuyMoves();
+    setTimeout(function(){
+        document.getElementById('overall-message').innerText = ""
+    }, 5000);
 }
 
 function createBadGuy(){
@@ -383,7 +378,6 @@ function createBadGuyMoves(){
     for (let i=0; i < movesMax; i++){
         badGuyChoice = colors[Math.floor(Math.random()*4)];
         badGuyMoves.push(badGuyChoice);
-        console.log(world, levelWithinWorld);
     }
     return badGuyMoves;
 }
@@ -449,7 +443,6 @@ function createReadyButton(){
 function playerMove(){
     playerMoves.push(this.id);
     this.blur()
-    //need to remove focus//
     compareMoves();
 }
 
