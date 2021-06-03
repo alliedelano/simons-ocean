@@ -389,7 +389,7 @@ function simonMove(){
     }, 200);
     setTimeout(function(){
         simonDisplays();
-    }, 1500);
+    }, 1000);
 }
 
 function simonDisplays(){
@@ -400,13 +400,13 @@ function simonDisplays(){
             moveEl.classList.add('active');
             setTimeout(i=> {
                 moveEl.classList.remove('active')
-            }, 300 * i, i);
-        }, 2000 * i, i)
+            }, 500 * (i + 1), i);
+        }, 1500 * (i + 1), i)
     }
     setTimeout(function(){
         document.getElementById('player-message').innerText = 'your turn!';
         addButtonListeners();
-    }, 2000 * badGuyMoves.length);
+    }, 1500 * (badGuyMoves.length + 1));
 }
 
 function addButtonListeners(){

@@ -112,16 +112,12 @@ header {
 }
 
 .active {
-    animation: lightUp 2s;
-    border: #ff00dd 5px;
+    animation: lightUp 1s;
 }
 
 @keyframes lightUp {
   from {
-    box-shadow: 0 0 100px -10px #ff00dd;
-  }
-  to {
-    box-shadow: 0 0 100px -15px #ff00dd inset;
+    box-shadow: 0 0 100px -10px #ff00dd inset;
   }
 }
 
