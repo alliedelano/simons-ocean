@@ -50,6 +50,8 @@ const story = [
 
 let playerMoves;
 let badGuyMoves;
+let playerMovesNum;
+let badGuyMovesNum;
 let lives;
 let world;
 let level;
@@ -273,6 +275,10 @@ function createGamePlay(){
     nextOutcomes.append(readyButton);
     readyButton.addEventListener('click', simonMove)
 
+    const playerMoveCounter = document.createElement('h3');
+    playerMoveCounter.id = 'player-move-counter';
+    nextOutcomes.appendChild(playerMoveCounter);
+
     const opponent = document.createElement('div');
     opponent.setAttribute('id', 'opponent');
     gameBoard.appendChild(opponent);
@@ -327,6 +333,7 @@ function levelUp(){
     if (level === 20){
         renderWin();
     } else {
+        resetMoveCounter();
         level += 1
         let levelWithinWorld;
         if (level % 5 != 0){
@@ -342,6 +349,12 @@ function levelUp(){
         document.getElementById(worldId).className += ' world-complete';;
         }
     }
+}
+
+function resetMoveCounter(){
+    playerMovesNum = 0;
+    badGuyMovesNum = 0;
+    document.getElementById('player-move-counter').innerText = ``;
 }
 
 function colorWorld(){
@@ -399,6 +412,8 @@ function simonMove(){
         document.getElementById('ready').remove();
         document.getElementById('player-message').innerText = 'here they go...'
         playerMoves = [];
+        playerMovesNum = 0;
+        badGuyMovesNum = badGuyMoves.length;
         for(move in badGuyMoves){
             moveEl = document.getElementById(badGuyMoves[move]);
             moveElClasses = moveEl.classList;
@@ -454,14 +469,15 @@ function createReadyButton(){
 
 function playerMove(){
     playerMoves.push(this.id);
-    this.blur()
+    this.blur();
+    playerMovesNum += 1;
     compareMoves();
 }
 
 function compareMoves(){
     for (move in playerMoves){
         if (playerMoves[move] === badGuyMoves[move] && playerMoves.length != badGuyMoves.length){
-            console.log('not long enough yet!');
+            document.getElementById('player-move-counter').innerText = `${playerMovesNum}/${badGuyMovesNum}`;
         } else if (playerMoves[move] != badGuyMoves[move]) {
             wrongSequence();
         }
@@ -472,6 +488,7 @@ function compareMoves(){
 }
 
 function youDidIt(){
+    document.getElementById('player-move-counter').innerText = `${playerMovesNum}/${badGuyMovesNum}`;
     setTimeout(function(){
         document.getElementById('player-message').innerText = 'nice job!'
         removeButtonListeners();
@@ -510,6 +527,7 @@ function checkForLoss(){
 
 function replayLevel(){
     document.getElementById('replay').remove()
+    resetMoveCounter();
     createReadyButton();
     renderLevel();
     document.getElementById('player-message').innerText = 'another bad guy! ready?'
