@@ -9,7 +9,7 @@ While you were on vacation, Simon hypnotized everyone in the sea into doing what
 ---
 
 ###Screenshots
-
+![simon start](imgs/simon_start.png)
 
 ###Technologies Used
 - JavaScript
