@@ -112,8 +112,8 @@ header {
 }
 
 .active {
-    animation: lightUp 1.5s;
-    border: #ff00dd;
+    animation: lightUp 2s;
+    border: #ff00dd 5px;
 }
 
 @keyframes lightUp {
