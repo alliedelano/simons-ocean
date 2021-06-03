@@ -79,7 +79,7 @@ function init(){
     level = 1;
     renderGame();
 };
-
+// THESE FUNCTIONS CREATE AND RENDER THE STORY //
 function createStoryBoard(){
     const storyBoard = document.createElement('div');
     storyBoard.setAttribute('id', 'story-board');
@@ -171,6 +171,7 @@ function tellStory(){
     }, 17000);
 }
 
+// THESE FUNCTIONS CREATE AND RENDER THE GAME THE GAME ITSELF //
 function renderGame(){
     document.getElementById('octopus').remove();
     document.getElementById('crab').remove();
@@ -295,37 +296,6 @@ function blankCanvas(){
     document.getElementById('overall-message').remove();
     document.getElementById('message').remove();
     document.getElementById('game-play').remove();
-}
-
-function renderWin(){
-    blankCanvas();
-    createStoryBoard();
-    colorAllLevels();
-    const winMsgEl = document.getElementById('story-line')
-    winMsgEl.id = 'you-won';
-    winMsgEl.innerText = "You won! You beat Simon and saved the sea!";
-    const playAgainButton = document.createElement('BUTTON');
-    playAgainButton.id = 'play-again-button';
-    playAgainButton.innerText = 'Play Again!';
-    document.getElementById('story-board').appendChild(playAgainButton);
-    playAgainButton.addEventListener('click', init);
-    createFriends();
-
-}
-
-function renderLoss(){
-    blankCanvas();
-    createStoryBoard();
-    colorAllLevels();
-    const loseMsgEl = document.getElementById('story-line')
-    loseMsgEl.id = 'you-lost';
-    loseMsgEl.innerText = "You lost! Want to play again?";
-    const playAgainButton = document.createElement('BUTTON');
-    playAgainButton.id = 'play-again-button';
-    playAgainButton.innerText = 'replay!';
-    document.getElementById('story-board').appendChild(playAgainButton);
-    playAgainButton.addEventListener('click', init);
-    createFriends();
 }
 
 function levelUp(){
@@ -454,15 +424,6 @@ function removeButtonListeners(){
     document.getElementById('red').removeEventListener('click', playerMove)
 }
 
-function createReadyButton(){
-    const readyButton = document.createElement('BUTTON');
-    readyButton.id = 'ready';
-    readyButton.innerText = 'ready!';
-    const nextOutcomes = document.getElementById('next-and-outcomes');
-    nextOutcomes.append(readyButton);
-    readyButton.addEventListener('click', simonMove)
-}
-
 function playerMove(){
     playerMoves.push(this.id);
     this.blur();
@@ -497,6 +458,15 @@ function youDidIt(){
     }, 2000)
 }
 
+function createReadyButton(){
+    const readyButton = document.createElement('BUTTON');
+    readyButton.id = 'ready';
+    readyButton.innerText = 'ready!';
+    const nextOutcomes = document.getElementById('next-and-outcomes');
+    nextOutcomes.append(readyButton);
+    readyButton.addEventListener('click', simonMove)
+}
+
 function wrongSequence(){
     removeButtonListeners();
     document.getElementById('player-message').innerText = "bummer. that wasn't quite it. want to try again?";
@@ -529,6 +499,7 @@ function replayLevel(){
     document.getElementById('player-message').innerText = 'another bad guy! ready?'
 }
 
+// THIS FUNCTIONS CREATE AND RENDER THE WIN/LOSS SCREENS AT THE END OF THE GAME //
 function createFriends(){
     const friendEls = document.createElement('div');
     friendEls.setAttribute('id', 'creature-imgs');
@@ -544,3 +515,32 @@ function createFriends(){
     octopusImgEl.innerHTML = `<img src='imgs/octopus.png'>`
 }
 
+function renderWin(){
+    blankCanvas();
+    createStoryBoard();
+    colorAllLevels();
+    const winMsgEl = document.getElementById('story-line')
+    winMsgEl.id = 'you-won';
+    winMsgEl.innerText = "You won! You beat Simon and saved the sea!";
+    const playAgainButton = document.createElement('BUTTON');
+    playAgainButton.id = 'play-again-button';
+    playAgainButton.innerText = 'Play Again!';
+    document.getElementById('story-board').appendChild(playAgainButton);
+    playAgainButton.addEventListener('click', init);
+    createFriends();
+}
+
+function renderLoss(){
+    blankCanvas();
+    createStoryBoard();
+    colorAllLevels();
+    const loseMsgEl = document.getElementById('story-line')
+    loseMsgEl.id = 'you-lost';
+    loseMsgEl.innerText = "You lost! Want to play again?";
+    const playAgainButton = document.createElement('BUTTON');
+    playAgainButton.id = 'play-again-button';
+    playAgainButton.innerText = 'replay!';
+    document.getElementById('story-board').appendChild(playAgainButton);
+    playAgainButton.addEventListener('click', init);
+    createFriends();
+}
