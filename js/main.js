@@ -459,9 +459,9 @@ function createReadyButton(){
 
 function playerMove(){
     playerMoves.push(this.id);
+    this.blur()
     //need to remove focus//
     compareMoves();
-
 }
 
 function compareMoves(){
