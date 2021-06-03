@@ -161,10 +161,6 @@ function tellStory(){
     }, 6000);
 
     setTimeout(function(){
-        document.getElementById('crab').remove();
-    }, 10000);
-
-    setTimeout(function(){
         const beginButtonEl = document.createElement('BUTTON');
         beginButtonEl.id = 'begin';
         beginButtonEl.innerText = 'begin';
@@ -179,6 +175,7 @@ function renderGame(){
     document.getElementById('story-board').remove();
     document.getElementById('sand-story').remove();
     document.getElementById('octopus').remove();
+    document.getElementById('crab').remove();
     createGameHeader();
     createOverallGameMessage();
     createBadGuyMessage();
@@ -360,13 +357,10 @@ function resetMoveCounter(){
 function colorWorld(){
     if (world === 2){
         document.getElementById('level-journey').style.backgroundColor = "#04019C";
-        document.getElementById('overall-message').innerText = "You brought color back to the reef!"
     } else if (world === 3){
         document.getElementById('sand').style.backgroundColor = "#F2EBAC";
-        document.getElementById('overall-message').innerText = "You brought color back to the sand!"
     } else if (world === 4){
         document.body.style.backgroundColor = "#8adfdf";
-        document.getElementById('overall-message').innerText = "You brought color back to the water!"
     } else {
         return world;
     }
