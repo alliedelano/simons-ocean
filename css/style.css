@@ -21,9 +21,22 @@ header {
 }
 
 #game-title {
-    font-size: 50px;
+    font-size: 70px;
     color: #04019C;
     align-self: center;
+    font-weight: bold;
+}
+#creature-imgs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#crab img {
+    max-width: 100px;
+}
+
+#octopus img {
+    max-width: 100px;
 }
 
 #story-line {

@@ -9,12 +9,12 @@ const creatures = {
     shark: {
         imgUrl: 'imgs/shark.png',
         animation: 'upDown',
-        message: "sharks can do anything"
+        message: "I'll rip you apart!"
     },
     stingray: {
         imgUrl: 'imgs/stingray.png',
         animation: 'rightLeft',
-        message: "Don't mess up or I'll sting you!"
+        message: "don't mess up or I'll sting you!"
     },
     pufferfish: {
         imgUrl: 'imgs/pufferfish.png',
@@ -24,12 +24,18 @@ const creatures = {
     turtle: {
         imgUrl: 'imgs/turtle.png',
         animation: 'wiggle',
-        message: "you'll leave shell-shocked!"
+        message: "I'll leave you shell-shocked!"
     },
     dolphin: {
         imgUrl: 'imgs/dolphin.png',
         animation: 'upAndOver',
-        message: "see if you can keep up!"
+        message: "see if you can keep up with these tricks!"
+    },
+    octopus: {
+        imgUrl: 'imgs/octopus.png',
+    },
+    crab: {
+        imgUrl: 'imgs/crab.png',
     },
 };
 
@@ -37,7 +43,7 @@ const story = [
     "While you were on vacation, Simon hypnotized everyone in the sea into doing whatever he says.",
     "But he didn't stop there...",
     "He hypnotized the sea itself into losing all of its color.",
-    "You just realized your best friend, Crabby McStabby, has gone missing.",
+    "And you just realized your best friend, Crabby McStabby, has gone missing.",
     "Build a path across the reef to find Crabby!",
     "The only way to break the spell and get past his army is to beat Simon at his own game, so pay attention!"
 ];
@@ -71,7 +77,6 @@ function init(){
     level = 1;
     renderGame();
 };
-
 
 function createStoryBoard(){
     const storyBoard = document.createElement('div');
@@ -152,6 +157,11 @@ function tellStory(){
         storyLine.style.color = '#000000'
         unColorAllLevels();
     }, 6000);
+
+    setTimeout(function(){
+        document.getElementById('crab').remove();
+    }, 10000);
+
     setTimeout(function(){
         const beginButtonEl = document.createElement('BUTTON');
         beginButtonEl.id = 'begin';
@@ -166,6 +176,7 @@ function tellStory(){
 function renderGame(){
     document.getElementById('story-board').remove();
     document.getElementById('sand-story').remove();
+    document.getElementById('octopus').remove();
     createGameHeader();
     createOverallGameMessage();
     createBadGuyMessage();
@@ -295,6 +306,7 @@ function renderWin(){
     playAgainButton.innerText = 'Play Again!';
     document.getElementById('story-board').appendChild(playAgainButton);
     playAgainButton.addEventListener('click', init);
+
 }
 
 function renderLoss(){
