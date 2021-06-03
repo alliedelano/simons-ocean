@@ -149,7 +149,7 @@ function tellStory(){
         }, 3000 * i, i);
     }
     setTimeout(function(){
-        document.body.style.backgroundColor = '#F6F6F6';
+        document.body.style.backgroundColor = '#898989';
         document.getElementById('sand-story').style.backgroundColor = '#DDDDDD';
         document.getElementById('level-journey').style.backgroundColor = '#BFBFC0';
         storyLine.style.color = '#000000'
@@ -389,7 +389,7 @@ function simonMove(){
     }, 200);
     setTimeout(function(){
         simonDisplays();
-    }, 1000);
+    }, 750);
 }
 
 function simonDisplays(){
@@ -400,7 +400,7 @@ function simonDisplays(){
             moveEl.classList.add('active');
             setTimeout(i=> {
                 moveEl.classList.remove('active')
-            }, 500 * (i + 1), i);
+            }, 200 * (i + 1), i);
         }, 1500 * (i + 1), i)
     }
     setTimeout(function(){

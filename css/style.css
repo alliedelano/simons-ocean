@@ -118,6 +118,7 @@ header {
 @keyframes lightUp {
   from {
     box-shadow: 0 0 100px -10px #ff00dd inset;
+    border: white solid 10px; 
   }
 }
 
