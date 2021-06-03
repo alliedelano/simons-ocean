@@ -90,6 +90,20 @@ function devSkip(){
     init();
 }
 
+function createStoryBoard(){
+    const storyBoard = document.createElement('div');
+    storyBoard.setAttribute('id', 'story-board');
+    document.body.appendChild(storyBoard, reefPath);
+
+    const storyLineEl = document.createElement('h2');
+    storyLineEl.setAttribute('id', 'story-line');
+    storyBoard.appendChild(storyLineEl);
+
+    const sand = document.createElement('div');
+    sand.setAttribute('id', 'sand-story');
+    document.body.appendChild(sand, reefPath);
+}
+
 function renderStory(){
     
     document.getElementById('game-title').id = 'story-line';
