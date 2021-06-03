@@ -509,7 +509,7 @@ function loseALife(){
 }
 
 function checkForLoss(){
-    if(lives < 0){
+    if(lives < 1){
         renderLoss()
     }
 }
