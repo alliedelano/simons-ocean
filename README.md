@@ -28,7 +28,7 @@ Once you click "start," you'll learn the backstory and begin the game. From ther
 
 There are four colors: blue, green, red, and yellow. Your opponent's moves are randomly generated based on world and level and will "light up" in order. After they're done, it'll be your turn to repeat their sequence. If you're successful, you'll move on to the next level! If not, you'll lose a life and repeat the level, usually against a new opponent. If you lose all of your lives, you lose the game and have an opportunity to replay from the beginning. 
 
-As you beat levels, you'll build a path across the screen. Every five levels, you'll complete a "world" and an element of the sea will regain its color: first the reef path at the bottom, then the sand, then the water itself. Once you fill in the entire path, you win the game! 
+As you beat levels, you'll build a path across the screen. Every five levels, you'll complete a "world" and an element of the sea will regain its color: first the reef path at the bottom, then the sand, then the water itself. Once you fill in the entire path and beat the final level, you win the game! 
 
 
 ### Next Steps
