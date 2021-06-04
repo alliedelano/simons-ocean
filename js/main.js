@@ -150,7 +150,7 @@ function tellStory(){
     for (let i=0; i<story.length; i++){
         setTimeout(i=> {
         storyLine.innerText = `${story[i]}`;
-        }, 3000 * i, i);
+        }, 4000 * i, i);
     }
     setTimeout(function(){
         document.body.style.backgroundColor = '#F6F6F6';
@@ -158,7 +158,7 @@ function tellStory(){
         document.getElementById('level-journey').style.backgroundColor = '#BFBFC0';
         storyLine.style.color = '#000000'
         unColorAllLevels();
-    }, 6000);
+    }, 8000);
 
     setTimeout(function(){
         const beginButtonEl = document.createElement('BUTTON');
@@ -168,7 +168,7 @@ function tellStory(){
         storyBoardEl.appendChild(beginButtonEl);
         beginButtonEl.addEventListener('click', init)
         document.getElementById('skip-intro').remove();
-    }, 17000);
+    }, 23000);
 }
 
 // THESE FUNCTIONS CREATE AND RENDER THE GAME THE GAME ITSELF //
