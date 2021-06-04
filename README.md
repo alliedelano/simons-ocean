@@ -32,7 +32,7 @@ As you beat levels, you'll build a path across the screen. Every five levels, yo
 
 
 ### Next Steps
-- End battle against Simon himself
+- Final battle against Simon himself
 - Animation when an opponent loses
 - Difficulty modes (easy, medium, difficult)
 - Sounds
