@@ -8,10 +8,13 @@ While you were on vacation, Simon hypnotized everyone in the sea into doing what
 
 ---
 
-### Screenshots
+### Screenshots & Gifs
 ![simon begin](imgs/simon_begin.png)
-[simon play](https://cdn.loom.com/sessions/thumbnails/b86abddf20134d1a9a3a12b5d41c75d5-1622766841379-with-play.gif)
-
+![simon play](https://cdn.loom.com/sessions/thumbnails/b86abddf20134d1a9a3a12b5d41c75d5-1622766841379-with-play.gif)
+![simon reef color](imgs/simon_add_reef_color.png)
+![simon getting close to end](imgs/simon_getting_close.png)
+![simon win](imgs/simon_win.png)
+![simon loss](imgs/simon_loss.png)
 
 
 ### Technologies Used
